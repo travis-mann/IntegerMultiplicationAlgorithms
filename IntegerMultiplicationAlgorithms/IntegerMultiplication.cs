@@ -23,9 +23,30 @@ namespace IntegerMultiplicationAlgorithms
             BigInteger integer2 = BigInteger.Parse("2718281828459045235360287471352662497757247093699959574966967627");
 
             // run algorithms
-            Console.WriteLine($"Grade School: {GradeSchool.Run(integer1, integer2)}");
-            Console.WriteLine($"Recursive: {RecursiveAlgorithm.Run(integer1, integer2)}");
-            Console.WriteLine($"Karatsuba's Algorithm: {KaratsubasAlgorithm.Run(integer1, integer2)}");
+            string[] algorithmNames = { "GradeSchool", "RecursiveAlgorithm", "KaratsubasAlgorithm" };
+            List<Func<BigInteger>> methods = new List<Func<BigInteger>>();
+            methods.Add(() => GradeSchool.Run(integer1, integer2));
+            methods.Add(() => RecursiveAlgorithm.Run(integer1, integer2));
+            methods.Add(() => KaratsubasAlgorithm.Run(integer1, integer2));
+
+            int algorithmNameIndex = 0;
+            foreach (var method in methods)
+            {
+                // get start time
+                TimeSpan startTime = DateTime.Now.TimeOfDay;
+
+                // run algorithm
+                BigInteger answer = method();
+
+                // show answer
+                string algorithmName = algorithmNames[algorithmNameIndex];
+                algorithmNameIndex++;
+                Console.WriteLine($"{algorithmName}: {answer}");
+                
+                // show total run time
+                TimeSpan endTime = DateTime.Now.TimeOfDay;
+                Console.WriteLine($"{algorithmName} Run Time {endTime - startTime}");
+            }
         }
     }
 }
