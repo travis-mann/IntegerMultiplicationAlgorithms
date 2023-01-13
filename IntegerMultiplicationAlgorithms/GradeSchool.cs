@@ -20,7 +20,7 @@ namespace IntegerMultiplicationAlgorithms
             /// <summary>Grade school integer multiplication algorithm</summary>
             /// <param name="integer1">first integer to multiply</param>
             /// <param name="integer2">second integer to multiply</param>
-            /// <returns> None </returns>
+            /// <returns>product of integer1 and integer2</returns>
 
             // step 1: convert integers to strings to access digits
             string stringInteger1 = integer1.ToString();
